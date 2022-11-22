@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const shell = require('shelljs');
 
 // setup a basic rest server
 app.use(express.json());
@@ -18,7 +19,11 @@ app.post('/github', (req, res) => {
         return res.status(401).send('Wrong secret');
     }
     
-
+    shell.exec('git pull', () => {
+        shell.exec('npm i', () => {
+            shell.exec('busybox reboot');
+        });
+    });
 });
 
 // run bot
