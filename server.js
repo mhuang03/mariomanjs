@@ -15,6 +15,10 @@ app.get('/', (req, res) => {
     res.send('Alive and well.');
 });
 
+app.post('/github', (req, res) => {
+    console.log(req);
+});
+
 webhookHandler.on('push', () => {
     console.log('push detected')
     exec('git pull', () => {
