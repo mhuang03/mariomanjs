@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
 });
 
 webhookHandler.on('push', (repo, data) => {
+    console.log('push detected')
     exec('git pull', () => {
         exec('npm i', () => {
             exec('busybox reboot');
