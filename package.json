@@ -16,6 +16,7 @@
         "express-github-webhook": "^1.0.6",
         "ffmpeg-static": "^5.0.2",
         "ms": "^3.0.0-canary.1",
+        "nodemon": "^2.0.20",
         "opusscript": "^0.0.8",
         "shelljs": "^0.8.5"
     }

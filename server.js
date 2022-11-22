@@ -34,7 +34,6 @@ app.post('/github', (req, res) => {
                 }
                 console.log('Installed dependencies!');
                 console.log(stdout);
-                process.exit(1);
                 // exec('busybox reboot', (error, stdout, stderr) => {
                 //     if (error) {
                 //         return console.error(`exec error: ${error}`);
