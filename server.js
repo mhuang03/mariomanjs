@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const { exec } = require("child_process");
+var GithubWebHook = require('express-github-webhook');
+var webhookHandler = GithubWebHook({ path: '/github', secret: process.env.GITHUB_SECRET });
 
 // setup a basic rest server
 app.use(express.json());
@@ -13,14 +15,8 @@ app.get('/', (req, res) => {
     res.send('Alive and well.');
 });
 
-app.post('/github', (req, res) => {
-    console.log(req);
-    console.log(req.body);
-    if (req.body.secret != 'githubmuyepico') {
-        return res.status(401).send('Wrong secret');
-    }
-    
-    exec('git pull ' + process.env.PULL_ARGS, () => {
+webhookHandler.on('push', (repo, data) => {
+    exec('git pull', () => {
         exec('npm i', () => {
             exec('busybox reboot');
         });
