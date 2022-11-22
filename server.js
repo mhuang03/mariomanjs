@@ -27,4 +27,4 @@ app.post('/github', (req, res) => {
 });
 
 // run bot
-require('main.js');
+require('./main.js');
