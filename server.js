@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
     res.send('Alive and well.');
 });
 
-// github push event webhook test
+// github push event webhook
 app.post('/github', (req, res) => {
     console.log(req);
     let signature = req.headers['x-hub-signature-256'];
