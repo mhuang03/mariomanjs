@@ -3,7 +3,6 @@ const { ApplicationCommandOptionType } = require('discord.js');
 module.exports = {
     name: 'letin',
     description: 'let a user in by giving them the \'champs\' role. active members only.',
-    voiceChannel: true,
     options: [
         {
             name: 'user',
