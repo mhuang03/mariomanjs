@@ -1,6 +1,7 @@
+require('dotenv').config();
 module.exports = {
     app: {
-        token: 'MTA0NDQ2Nzg3Mjc2MTY1OTQyMw.GjrleQ.Oc_uYpsUTXz1K1K2Oxk4dsISkmJiVVETYH1jAg',
+        token: process.env.API_TOKEN,
         playing: 'Super Mario',
         global: false,
         guilds: ['473280135903182849', '473280135903182849']
