@@ -22,8 +22,12 @@ app.post('/github', (req, res) => {
         console.log('Signature verified!');
         res.status(200).send({success: true});
         exec('git pull ' + process.env.PULL_ARGS, () => {
+            console.log('Pulled from GitHub!');
             exec('npm i', () => {
-                exec('busybox reboot');
+                console.log('Installed dependencies!');
+                exec('busybox reboot', () => {
+                    console.log('Rebooted!');
+                });
             });
         });
     } else {
