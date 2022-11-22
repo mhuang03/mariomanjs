@@ -2,7 +2,7 @@ const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: 'queue',
-    description: 'queue up a song',
+    description: 'view the queue',
     voiceChannel: true,
 
     execute({ client, inter }) {
@@ -16,7 +16,7 @@ module.exports = {
 
         const songs = queue.tracks.length;
 
-        const nextSongs = songs > 5 ? `And **${songs - 5}** other song(s)...` : `In the playlist **${songs}** song(s)...`;
+        const nextSongs = songs > 5 ? `And **${songs - 5}** other song(s)...` : `There are **${songs}** song(s) in the queue...`;
 
         const tracks = queue.tracks.map((track, i) => `**${i + 1}** - ${track.title} | ${track.author} (requested by : ${track.requestedBy.username})`)
 
@@ -24,7 +24,7 @@ module.exports = {
         .setColor('#ff0000')
         .setThumbnail(inter.guild.iconURL({ size: 2048, dynamic: true }))
         .setAuthor({name: `Server queue - ${inter.guild.name} ${methods[queue.repeatMode]}`, iconURL: client.user.displayAvatarURL({ size: 1024, dynamic: true })})
-        .setDescription(`Current ${queue.current.title}\n\n${tracks.slice(0, 5).join('\n')}\n\n${nextSongs}`)
+        .setDescription(`Currently playing **${queue.current.title}**\n\n${tracks.slice(0, 5).join('\n')}\n\n${nextSongs}`)
         .setTimestamp()
         .setFooter({ text: 'I am Mario Man.', iconURL: inter.member.avatarURL({ dynamic: true })})
 

@@ -38,7 +38,7 @@ module.exports = {
          .setStyle('Primary')
 
          const resumepause = new ButtonBuilder()
-         .setLabel('Resume & Pause')
+         .setLabel('Pause / Resume')
          .setCustomId(JSON.stringify({ffb: 'resume&pause'}))
          .setStyle('Danger')
 
