@@ -20,7 +20,7 @@ app.post('/github', (req, res) => {
         return res.status(401).send('Wrong secret');
     }
     
-    exec('git pull', () => {
+    exec('git pull ' + process.env.PULL_ARGS, () => {
         exec('npm i', () => {
             exec('busybox reboot');
         });
