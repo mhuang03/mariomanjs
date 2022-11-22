@@ -21,12 +21,24 @@ app.post('/github', (req, res) => {
     if (signature === expectedSignature) {
         console.log('Signature verified!');
         res.status(200).send({success: true});
-        exec('git pull ' + process.env.PULL_ARGS, () => {
+        exec('git pull ' + process.env.PULL_ARGS, (error, stdout, stderr) => {
+            if (error) {
+                return console.error(`exec error: ${error}`);
+            }
             console.log('Pulled from GitHub!');
-            exec('npm i', () => {
+            console.log(stdout);
+            exec('npm i', (error, stdout, stderr) => {
+                if (error) {
+                    return console.error(`exec error: ${error}`);
+                }
                 console.log('Installed dependencies!');
-                exec('busybox reboot', () => {
+                console.log(stdout);
+                exec('busybox reboot', (error, stdout, stderr) => {
+                    if (error) {
+                        return console.error(`exec error: ${error}`);
+                    }
                     console.log('Rebooted!');
+                    console.log(stdout);
                 });
             });
         });
