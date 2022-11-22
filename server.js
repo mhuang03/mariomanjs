@@ -21,7 +21,7 @@ app.post('/github', (req, res) => {
     if (signature === expectedSignature) {
         console.log('Signature verified!');
         res.status(200).send({success: true});
-        exec('git pull', () => {
+        exec('git pull ' + process.env.PULL_ARGS, () => {
             exec('npm i', () => {
                 exec('busybox reboot');
             });
