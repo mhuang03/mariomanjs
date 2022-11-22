@@ -1,8 +1,7 @@
 const express = require('express');
 const app = express();
 const { exec } = require("child_process");
-var GithubWebHook = require('express-github-webhook');
-var webhookHandler = GithubWebHook({ path: '/github', secret: process.env.GITHUB_SECRET });
+const crypto = require('crypto');
 
 // setup a basic rest server
 app.use(express.json());
@@ -17,23 +16,20 @@ app.get('/', (req, res) => {
 
 app.post('/github', (req, res) => {
     console.log(req);
-});
-
-webhookHandler.on('push', () => {
-    console.log('push detected')
-    exec('git pull', () => {
-        exec('npm i', () => {
-            exec('busybox reboot');
+    let signature = req.headers['x-hub-signature-256'];
+    let expectedSignature = 'sha256=' + crypto.createHmac('sha256', process.env.GITHUB_SECRET).update(JSON.stringify(req.body)).digest('hex');
+    if (signature === expectedSignature) {
+        console.log('Signature verified!');
+        res.status(200).send({success: true});
+        exec('git pull', () => {
+            exec('npm i', () => {
+                exec('busybox reboot');
+            });
         });
-    });
-});
-
-webhookHandler.on('error', (err) => {
-    console.log(err);
-});
-
-webhookHandler.on('*', (event) => {
-    console.log(event);
+    } else {
+        console.log('Signature mismatch!');
+        res.status(401).send({success: false});
+    }
 });
 
 // run bot
