@@ -1,6 +1,6 @@
 {
     "name": "mariomanjs",
-    "main": "main.js",
+    "main": "server.js",
     "author": "mhuang03",
     "version": "1.0.0",
     "repository": "https://github.com/mhuang03/mariomanjs.git",
