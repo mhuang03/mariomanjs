@@ -35,5 +35,10 @@ readdirSync('./commands/').forEach(dirs => {
 
 client.on('ready', (client) => {
  if (client.config.app.global) client.application.commands.set(CommandsArray)
-  else client.guilds.cache.get(client.config.app.guild).commands.set(CommandsArray)
+  else {
+    client.config.app.guilds.forEach(guild => {
+      client.guilds.cache.get(guild).commands.set(CommandsArray)
+    })
+  }
+  // client.guilds.cache.get(client.config.app.guild).commands.set(CommandsArray)
 })
