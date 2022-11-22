@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/github', (req, res) => {
+    console.log(req);
     console.log(req.body);
     if (req.body.secret != 'githubmuyepico') {
         return res.status(401).send('Wrong secret');
