@@ -25,7 +25,11 @@ webhookHandler.on('push', () => {
 });
 
 webhookHandler.on('error', (err) => {
-    console.log(err)
+    console.log(err);
+});
+
+webhookHandler.on('*', (event) => {
+    console.log(event);
 });
 
 // run bot
