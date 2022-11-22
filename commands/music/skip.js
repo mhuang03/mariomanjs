@@ -1,6 +1,6 @@
 module.exports = {
     name: 'skip',
-    description: 'stop the track',
+    description: 'skip the current track',
     voiceChannel: true,
 
     execute({ inter }) {
