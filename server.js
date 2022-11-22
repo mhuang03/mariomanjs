@@ -15,13 +15,17 @@ app.get('/', (req, res) => {
     res.send('Alive and well.');
 });
 
-webhookHandler.on('push', (repo, data) => {
+webhookHandler.on('push', () => {
     console.log('push detected')
     exec('git pull', () => {
         exec('npm i', () => {
             exec('busybox reboot');
         });
     });
+});
+
+webhookHandler.on('error', (err) => {
+    console.log(err)
 });
 
 // run bot
