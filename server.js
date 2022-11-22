@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const shell = require('shelljs');
+const { exec } = require("child_process");
 
 // setup a basic rest server
 app.use(express.json());
@@ -19,9 +19,9 @@ app.post('/github', (req, res) => {
         return res.status(401).send('Wrong secret');
     }
     
-    shell.exec('git pull', () => {
-        shell.exec('npm i', () => {
-            shell.exec('busybox reboot');
+    exec('git pull', () => {
+        exec('npm i', () => {
+            exec('busybox reboot');
         });
     });
 });
