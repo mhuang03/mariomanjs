@@ -19,10 +19,6 @@ module.exports = {
         const champs = inter.guild.roles.cache.find(role => role.name === 'Champs');
         const active = inter.guild.roles.cache.find(role => role.name === 'Active');
 
-        if (!inter.member.roles.cache.has(active.id)) {
-            return inter.reply({ content: 'You are not an active member.', ephemeral: true });
-        }
-
         if (member.bot) return inter.reply({ content: `You can't let a bot in ${inter.member}... try again ? ❌`, ephemeral: true });
 
         if (member.roles.cache.has(champs.id)) return inter.reply({ content: `This user is already a champ ${inter.member}... try again ? ❌`, ephemeral: true });
