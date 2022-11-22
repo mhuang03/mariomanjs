@@ -16,6 +16,9 @@ app.get('/', (req, res) => {
 
 // github push event webhook
 app.post('/github', (req, res) => {
+    if (process.env.DEV_MODE == 'true') {
+        return;
+    }
     console.log(req);
     let signature = req.headers['x-hub-signature-256'];
     let expectedSignature = 'sha256=' + crypto.createHmac('sha256', process.env.GITHUB_SECRET).update(JSON.stringify(req.body)).digest('hex');

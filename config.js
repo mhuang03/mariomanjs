@@ -3,7 +3,7 @@ module.exports = {
     app: {
         token: process.env.API_TOKEN,
         playing: 'Super Mario',
-        global: process.env.GLOBAL_COMMANDS == 'true' ? true : false,
+        global: process.env.GLOBAL_COMMANDS == 'true',
         guilds: ['473280135903182849', '473280135903182849']
     },
 
