@@ -6,7 +6,7 @@
     "repository": "https://github.com/mhuang03/mariomanjs.git",
     "description": "Mario Man, the bot.",
     "scripts": {
-        "start": "node main.js"
+        "start": "node server.js"
     },
     "dependencies": {
         "discord-player": "^5.3.1",
